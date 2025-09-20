@@ -2,7 +2,6 @@ package main
 
 import (
 	"bufio"
-	"flag"
 	"fmt"
 	"io"
 	"log"
@@ -95,15 +94,12 @@ func main() {
 	cfg := parseArgs()
 
 	if cfg.DbFile == "" {
-		fmt.Println("ERR: db file is required")
-		flag.Usage()
-		os.Exit(2)
+		errExit("db file is required")
 	}
 
 	if cfg.InputsFile != "" {
 		if fileExists(cfg.DbFile) {
-			fmt.Println("ERR: cannot have both inputs file and db file")
-			os.Exit(2)
+			errExit("cannot have both inputs file and db file")
 		}
 	}
 

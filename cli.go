@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"os"
 )
 
 func parseArgs() *Config {
@@ -40,4 +41,11 @@ Examples:
 		Concurrency: *concurrency,
 		Timeout:     *timeout,
 	}
+}
+
+func errExit(msg string) {
+	fmt.Println("ERR: " + msg)
+	fmt.Println("--------------------------------")
+	flag.Usage()
+	os.Exit(2)
 }
