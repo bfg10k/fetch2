@@ -26,14 +26,18 @@ Examples:
 `)
 	}
 
-	cfg := &Config{
-		UserAgent:   *flag.String("user-agent", "fetch2", "Name sent to websites when making requests"),
-		InputsFile:  *flag.String("inputs", "", "File with URLs to fetch. Starts fresh database. Cannot use if db file exists."),
-		DbFile:      *flag.String("db", "", "Database file path (required). Creates if not exists."),
-		Concurrency: *flag.Int("concurrency", 6, "How many downloads to run at once"),
-		Timeout:     *flag.Int("timeout", 30, "How long to wait for each download (seconds)"),
-	}
+	userAgent := flag.String("user-agent", "fetch2", "Name sent to websites when making requests")
+	inputsFile := flag.String("inputs", "", "File with URLs to fetch. Starts fresh database. Cannot use if db file exists.")
+	dbFile := flag.String("db", "", "Database file path (required). Creates if not exists.")
+	concurrency := flag.Int("concurrency", 6, "How many downloads to run at once")
+	timeout := flag.Int("timeout", 30, "How long to wait for each download (seconds)")
 
 	flag.Parse()
-	return cfg
+	return &Config{
+		UserAgent:   *userAgent,
+		InputsFile:  *inputsFile,
+		DbFile:      *dbFile,
+		Concurrency: *concurrency,
+		Timeout:     *timeout,
+	}
 }
